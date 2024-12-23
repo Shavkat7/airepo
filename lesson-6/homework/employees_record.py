@@ -43,7 +43,7 @@ match a:
         with open("employees.txt") as file:
             for line in file:
                 line1 = line.split(",")
-                if line1[0] == to_search_emp_id:
+                if int(line1[0]) == to_search_emp_id:
                     print(line)
                     found = True
                     break
@@ -53,30 +53,42 @@ match a:
     case 4:
         to_update_emp_id = int(input("Enter employee's ID you want to update: "))
         found = False
-        with open("employees.txt", "a") as file:
-            for line in file:
-                line1 = line.split(",")
-                if line1[0] == to_update_emp_id:
-                    found = True
-                    new_name = input("Enter new name: ")
-                    new_position = input("Enter new position: ")
-                    new_salary = int(input("Enter new salary: "))
-                    line = f"{to_update_emp_id}, {new_name}, {new_position}, {new_salary}"
-                    print(f"Updated record is: {line}")
-                    break
-            if not found:
-                print(f"The employee with {to_update_emp_id} ID is not found!")
+
+        # store all lines
+        with open("employees.txt", "r") as filecha:
+            content = filecha.readlines()
+
+        
+        for i, line in enumerate(content):
+            line1 = line.strip().split(",")
+            if int(line1[0]) == to_update_emp_id:
+                found = True
+
+                new_name = input("Enter new name: ")
+                new_position = input("Enter new position: ")
+                new_salary = int(input("Enter new salary: "))
+
+                content[i] = f"{to_update_emp_id}, {new_name}, {new_position}, {new_salary}\n"
+                break
+
+        if found:
+            with open("employees.txt", "w") as file:
+                file.writelines(content)
+            print(f"Updated record is: {content[i].strip()}")
+        else:
+            print(f"The employee with ID {to_update_emp_id} is not found!")
+
     case 5:
         to_delete_emp_id = int(input("Enter employee's ID you want to delete: "))
-        found = False
         with open("employees.txt") as file:
-            for line in file:
+            content = file.readlines()
+        
+        with open("employees.txt", "w") as file:
+            for line in content:
+                if not line:
+                    continue
                 line1 = line.split(",")
-                if line1[0] == to_delete_emp_id:
-                    
-                    found = True
-                    break
-            if not found:
-                print(f"The employee with {to_delete_emp_id} ID is not found!")
-
-    # case 6:
+                if int(line1[0]) != to_delete_emp_id:
+                    file.write(f"{line}\n")                               
+    case 6:
+        exit()
