@@ -1,0 +1,82 @@
+
+    # USE ONCE TO CREATE A FILE    
+# with open("employees.txt", "w") as file:
+#     file.write("")
+
+
+
+print("1. Add new employee record\n\
+2. View all employee records\n\
+3. Search for an employee by Employee ID\n\
+4. Update an employee's information\n\
+5. Delete an employee record\n\
+6. Exit")
+
+a = int(input("Choose number between 1 to 6: "))
+
+match a:
+    case 1:
+
+        emp_id = int(input("Enter Employee ID: "))
+        name = input("Enter full name: ")
+        position = input("Enter position: ")
+        salary = int(input("Enter salary: "))
+
+        try:
+            with open("employees.txt", "a") as file:
+                file.write(f"{emp_id}, {name}, {position}, {salary}")
+                file.write("\n")
+                print("Employee record added successfully!")
+        except:
+            print("Error occured")
+
+        
+    case 2:
+        try:
+            with open("employees.txt") as file:
+                print(file.read())
+        except FileNotFoundError as e:
+            print(e)
+    case 3:
+        to_search_emp_id = int(input("Enter employee's ID you want to find: "))
+        found = False
+        with open("employees.txt") as file:
+            for line in file:
+                line1 = line.split(",")
+                if line1[0] == to_search_emp_id:
+                    print(line)
+                    found = True
+                    break
+            if not found:
+                print(f"The employee with {to_search_emp_id} ID is not found!")
+
+    case 4:
+        to_update_emp_id = int(input("Enter employee's ID you want to update: "))
+        found = False
+        with open("employees.txt", "a") as file:
+            for line in file:
+                line1 = line.split(",")
+                if line1[0] == to_update_emp_id:
+                    found = True
+                    new_name = input("Enter new name: ")
+                    new_position = input("Enter new position: ")
+                    new_salary = int(input("Enter new salary: "))
+                    line = f"{to_update_emp_id}, {new_name}, {new_position}, {new_salary}"
+                    print(f"Updated record is: {line}")
+                    break
+            if not found:
+                print(f"The employee with {to_update_emp_id} ID is not found!")
+    case 5:
+        to_delete_emp_id = int(input("Enter employee's ID you want to delete: "))
+        found = False
+        with open("employees.txt") as file:
+            for line in file:
+                line1 = line.split(",")
+                if line1[0] == to_delete_emp_id:
+                    
+                    found = True
+                    break
+            if not found:
+                print(f"The employee with {to_delete_emp_id} ID is not found!")
+
+    # case 6:
