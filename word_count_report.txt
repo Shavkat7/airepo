@@ -1,0 +1,5 @@
+Word Count Report
+Total words: 16
+Top 2 words:
+is - 3 times
+file - 3 times
