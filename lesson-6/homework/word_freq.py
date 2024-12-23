@@ -1,7 +1,7 @@
 content = ""
 
 try:
-    with open("sample.txt") as file:
+    with open("lesson-6/homework/sample.txt") as file:
         content_l = file.readlines()
         for i in content_l:
             content = content + i + ", "
@@ -9,7 +9,7 @@ try:
 except FileNotFoundError as e:
     content_l = input("Type a paragraph: ")
     content = content_l
-    with open("sample.txt", "w") as file:
+    with open("lesson-6/homework/sample.txt", "w") as file:
         file.writelines(content)
 
 without_punc = ""
@@ -45,7 +45,7 @@ sorted_dic = dict(sorted(word_with_count.items(), key=lambda item: item[1], reve
 
 
 
-with open("word_count_report.txt", "w") as output:
+with open("lesson-6/homework/word_count_report.txt", "w") as output:
     # BONUS     BONUS   BONUS   BONUS   BONUS   BONUS   BONUS j = input()
     j=int(input("Enter number of top most common words to be displayed: "))
 

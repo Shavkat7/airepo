@@ -1,2 +1,0 @@
-987654321, John Doe, Software ENgineer, 23000
-908, Qwerty, CEO, 7880000000000

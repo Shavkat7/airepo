@@ -23,7 +23,7 @@ match a:
         salary = int(input("Enter salary: "))
 
         try:
-            with open("employees.txt", "a") as file:
+            with open("lesson-6/homework/employees.txt", "a") as file:
                 file.write(f"{emp_id}, {name}, {position}, {salary}")
                 file.write("\n")
                 print("Employee record added successfully!")
@@ -33,14 +33,14 @@ match a:
         
     case 2:
         try:
-            with open("employees.txt") as file:
+            with open("lesson-6/homework/employees.txt") as file:
                 print(file.read())
         except FileNotFoundError as e:
             print(e)
     case 3:
         to_search_emp_id = int(input("Enter employee's ID you want to find: "))
         found = False
-        with open("employees.txt") as file:
+        with open("lesson-6/homework/employees.txt") as file:
             for line in file:
                 line1 = line.split(",")
                 if int(line1[0]) == to_search_emp_id:
@@ -55,7 +55,7 @@ match a:
         found = False
 
         # store all lines
-        with open("employees.txt", "r") as filecha:
+        with open("lesson-6/homework/employees.txt", "r") as filecha:
             content = filecha.readlines()
 
         
@@ -72,7 +72,7 @@ match a:
                 break
 
         if found:
-            with open("employees.txt", "w") as file:
+            with open("lesson-6/homework/employees.txt", "w") as file:
                 file.writelines(content)
             print(f"Updated record is: {content[i].strip()}")
         else:
@@ -80,10 +80,10 @@ match a:
 
     case 5:
         to_delete_emp_id = int(input("Enter employee's ID you want to delete: "))
-        with open("employees.txt") as file:
+        with open("lesson-6/homework/employees.txt") as file:
             content = file.readlines()
         
-        with open("employees.txt", "w") as file:
+        with open("lesson-6/homework/employees.txt", "w") as file:
             for line in content:
                 if not line:
                     continue
