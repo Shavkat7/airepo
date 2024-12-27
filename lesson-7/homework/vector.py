@@ -28,8 +28,7 @@ class Vector:
     def __rmul__(self, scalar):
         return self.__mul__(scalar)
 
-    def dot(self, v2):
-
+    def __mul__(self, v2):
         if len(self) != len(v2):
             raise ValueError("Vectors of the same magnitude can have a dor product!")
         elem = list(a*b for a, b in zip(self.component, v2.component))
@@ -39,13 +38,12 @@ class Vector:
         return round(math.sqrt(sum(a**2 for a in self.component)), 5)
     
     def normalize(self):
-        return Vector(*(round(a/self.magnitude(), 5) for a in self.component))
+        return Vector(*(round(a/self.magnitude(), 3) for a in self.component))
 
 
 v1 = Vector(1, 2, 3)
-v2 = Vector(4, 5, 6, 4)
-print(v1 + v2)
-print(3 * v1)
-print(v1.dot(v2))
-print(v1.magnitude())
-print(v1.normalize())
+v2 = Vector(4, 5, 6)
+
+dot_product = v1 * v2
+print(dot_product)
+
