@@ -1,3 +1,15 @@
+class BookNotFoundException(Exception):
+    pass
+
+class BookAlreadyBorrowedException(Exception):
+    pass
+
+class MemberLimitExceededException(Exception):
+    pass
+
+
+
+
 class Book:
     title = ""
     author = ""
@@ -33,5 +45,31 @@ class Library:
     def borrow_book(self, member_name, book_title):
         for name in self.members:
             if name.name == member_name:
-                member = name
-                break
+                if len(name.borrowed_books) <= 3:
+                    for book in self.books:
+                        if book.title == book_title:
+                            if book.is_borrowed == False:
+                                book.is_borrowed = True
+                                name.borrowed_books.append(book)
+                                return True
+                            else:
+                                raise BookAlreadyBorrowedException("Book already borrowed")
+                        else:
+                            raise BookNotFoundException("Book not found")
+                    return True
+                else:
+                    raise MemberLimitExceededException("Member limit exceeded. 3 books maximum")
+
+    def return_book(self, member_name, book_title):
+        for name in self.members:
+            if name.name == member_name:
+                for book in name.borrowed_books:
+                    if book.title == book_title:
+                        book.is_borrowed = False
+                        name.borrowed_books.remove(book)
+                        return True
+                    else:
+                        raise BookNotFoundException(f"The book is not in the borrowed list of {member_name} member")
+            else:
+                return "No member with this name!"
+           
