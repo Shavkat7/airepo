@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect("roster.db")
+connection = sqlite3.connect("lesson-13/homework/roster.db")
 
 cursor = connection.cursor()
 
