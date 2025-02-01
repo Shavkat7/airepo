@@ -1,11 +1,11 @@
 import requests
-import pymupdf
+import pymupdf # Extracting photos or text from the pdf files
 
 
 """
 MYNOTES BELOW and necessary info (API, etc.)
 """
-API_key = "7502002285:AAFqCrejSdgbSgviFs_IgoWpIMXdutVHYn0"
+API_key
 
 
 """
@@ -38,10 +38,10 @@ resp = requests.get(url + "getMe")
 
 
 
-from pathlib import Path
+from pathlib import Path # Iterating through the given path, and takes only file format specified
 direct = Path("project-1/books")
 for book in direct.glob("*.pdf"):
-    # print(book)
+    # print(book) # book = project-1\books\NAME_OF_THE_BOOK.pdf
     book_path = str(book).replace("\\", "/")
     # print(book_path)
 
@@ -73,3 +73,6 @@ for book in direct.glob("*.pdf"):
     The following code sends BINARY format of the FILES and posts it to the telegram channel REPLYING to a cover page image message above
     """
     repl_file = requests.post(url + "sendDocument", params={"chat_id": "@project1_AI", "reply_to_message_id": response.json()['result']['message_id']}, files={"document": open(f"{book_path}", "rb")})
+
+
+    print("Sent to the channel successfully!")
