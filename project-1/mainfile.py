@@ -5,7 +5,7 @@ import pymupdf # Extracting photos or text from the pdf files
 """
 MYNOTES BELOW and necessary info (API, etc.)
 """
-API_key
+API_key = "7502002285:AAFqCrejSdgbSgviFs_IgoWpIMXdutVHYn0"
 
 
 """
