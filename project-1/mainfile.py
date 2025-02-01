@@ -63,7 +63,7 @@ for book in direct.glob("*.pdf"):
     The following code sends BINARY format of the image and posts it to the telegram channel
     """
     with open(f"project-1/books/page-1{book_path[16:-4]}.png", "rb") as photo:
-        response = requests.post(url + "sendPhoto", data={"chat_id": "@project1_AI"}, files={"photo": photo})
+        response = requests.post(url + "sendPhoto", params={"chat_id": "@project1_AI"}, files={"photo": photo})
     # print(response.json())
 
     # repl = requests.post(url + "sendMessage", params={"chat_id": "@project1_AI", "text": "This is book1", "reply_to_message_id": 20})
